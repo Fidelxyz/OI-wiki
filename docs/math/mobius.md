@@ -150,7 +150,11 @@ $$
 - 常数函数： $1(n)=1$ （完全积性）
 - 除数函数： $\sigma_{k}(n)=\sum_{d\mid n}d^{k}$  $\sigma_{0}(n)$ 通常简记作 $\operatorname{d}(n)$ 或 $\tau(n)$ ， $\sigma_{1}(n)$ 通常简记作 $\sigma(n)$ 。
 - 欧拉函数： $\varphi(n)=\sum_{i=1}^n [\gcd(i,n)=1]$ 
-- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它也是一个积性函数。
+- 莫比乌斯函数： $\mu(n) = \begin{cases}1 & n=1 \\ 0 & \exists d>1:d^{2} \mid n \\ (-1)^{\omega(n)} & otherwise\end{cases}$ ，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
+
+???+note "加性函数"
+    此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $\operatorname{f}$ ，当整数 $a,b$ 互质时，均有 $\operatorname{f}(ab)=\operatorname{f}(a)+\operatorname{f}(b)$ 。
+    应与代数中的加性函数 (Additive map) 区分。
 
 * * *
 
@@ -317,6 +321,25 @@ $$
 原问题为：已知 $f=g\ast1$ ，证明 $g=f\ast\mu$ 
 
 易知如下转化： $f\ast\mu=g*1*\mu\implies f\ast\mu=g$ （其中 $1\ast\mu=\varepsilon$ ）。
+
+对于第二种形式：
+
+类似上面的方法一，我们考虑逆推这个式子。
+
+$$
+\begin{aligned}
+&\sum_{n|d}{\mu(\frac{d}{n})f(d)} \\ 
+    =& \sum_{k=1}^{+\infty}{\mu(k)f(kn)}
+    = \sum_{k=1}^{+\infty}{\mu(k)\sum_{kn|d}{g(d)}} \\
+    =& \sum_{n|d}{g(d)\sum_{k|\frac{n}{d}}{\mu(k)}}
+    = \sum_{n|d}{g(d)\epsilon(\frac{n}{d})} \\ 
+    =& g(n)
+\end{aligned}
+$$
+
+我们把 $d$ 表示为 $kn$ 的形式，然后把 $f$ 的原定义代入式子。  
+发现枚举 $k$ 再枚举 $kn$ 的倍数可以转换为直接枚举 $n$ 的倍数再求出 $k$ ,  
+发现后面那一块其实就是 $\epsilon$ , 整个式子只有在 $d=m$ 的时候才能取到值 .
 
 * * *
 
